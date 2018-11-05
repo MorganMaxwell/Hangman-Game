@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <header class="row">
+    <header class="row" id="header">
         <div class="card bg-dark text-white">
             <img class="card-img" src="assets/images/dragon_ball_z_characters_banner.jpg" alt="Header Image">
             <div class="card-img-overlay">
@@ -23,18 +23,27 @@
 
     <div class="row" id="correctguesstext">             </div>
 
-    <div class="row">
+    <div class="row" id="bodyOfPage">
         <div class="col-md-2"></div> 
         <!-- Left margins ^^^ -->
-        <div class="col-md-8">
+        <div class="col-md-8" id="gameBody">
         <!-- Body of game ^^^ -->
             <div class="row">
-                <div class="col-md-6">
-        <!-- left column of game. ^^^ For images -->
-                    
+                <div class="col-md-6" id="leftcolumn">
+                <!-- left column of game. ^^^ For images -->
+                    <img id="changingimage" src="assets/images/dragonplaceholder.jpg" type="image/gif">
                 </div>
-                <div class="col-md-6">
-        <!-- right column of game. ^^^ For everything else. -->
+                <div class="col-md-6" id="rightcolumn">
+                <!-- right column of game. ^^^ For everything else. -->
+                    <p class="statictext">Press Any Key To Guess A Letter!</p>
+                    <p class="statictext">Wins Tally</p>
+                    <p id="wins">                       </p>
+                    <p class="statictext">Current Word</p>
+                    <p id="currentword">                </p>
+                    <p class="statictext">Number Of Guesses Left</p>
+                    <p id="numberOfGuesses">            </p>
+                    <p class="statictext">Letters Already Guessed</p>
+                    <p id="lettersGuessed">             </p>
 
                 </div>
             </div>
