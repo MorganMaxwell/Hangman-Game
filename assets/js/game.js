@@ -26,16 +26,21 @@ function gameDisplay() {
     console.log(wordDisplay);
 
     document.getElementById("currentword").innerHTML = wordDisplay;
-    document.getElementById("numberOfGuesses").innerHTML = 
+    document.getElementById("lettersGuessed").innerHTML = lettersGuessed;
+    document.getElementById("numberOfGuesses").innerHTML = numberOfGuesses;
+    
 }
 
 
 document.onkeyup = function (userInput) {
 
     var userGuess = userInput.key;
+    // GET THIS LINE EXPLAINED ^^^
     lettersGuessed.push(userGuess);
     gameDisplay();
-    if (lettersGuessed.length > 10) {
+   
+
+    if (lettersGuessed.length > 15) {
         resetGame();
     }
 }
