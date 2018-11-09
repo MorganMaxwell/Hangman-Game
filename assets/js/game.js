@@ -1,72 +1,74 @@
+"use strict";
 var wordBank = ["bulma", "fatbuu", "freeza", "futuretrunks", "gohan", "goku", "goten", "kidbuu", "kidgohan", "kidtrunks", "kingkai", "roshi", "pan", "perfectcell", "raditz", "supersaiyan", "tien", "vegeta", "videl", "yamcha"];
-resetGame();
+
 var wordChoice;
 
 var lettersGuessed;
+
+var numberOfGuesses = 15;
+
+var userGuess;
+
+resetGame();
 
 function resetGame() {
     wordChoice = wordBank[Math.floor(Math.random() * wordBank.length)];
     lettersGuessed = [];
     gameDisplay();
-}
+    numberOfGuesses = 15;
+};
 
 function gameDisplay() {
     var wordDisplay = "";
+    var isInWord = true;
 
     for (var i = 0; i < wordChoice.length; i++) {
         var correctLetter = wordChoice[i];
         if (lettersGuessed.includes(correctLetter)) {
             wordDisplay = wordDisplay + correctLetter;
+            console.log(typeof wordDisplay);
+            isInWord = false;
         }
         else {
             wordDisplay = wordDisplay + "-";
-        }
+            isInWord = true;
+        };
+        
+        
+    };
 
+    if (isInWord) {
+        numberOfGuesses--;
+        
+    };
+
+    if (wordDisplay.includes("-") == false) {
+        alert("You won! You know too much about anime, congrats!");
+        resetGame();
     }
-    console.log(wordDisplay);
 
     document.getElementById("currentword").innerHTML = wordDisplay;
-    document.getElementById("lettersGuessed").innerHTML = lettersGuessed;
+    document.getElementById("lettersGuessed").innerHTML = lettersGuessed.join(" ");
     document.getElementById("numberOfGuesses").innerHTML = numberOfGuesses;
+
     
-}
+};
 
 
 document.onkeyup = function (userInput) {
 
-    var userGuess = userInput.key;
+    userGuess = userInput.key;
     // GET THIS LINE EXPLAINED ^^^
     lettersGuessed.push(userGuess);
     gameDisplay();
    
 
     if (lettersGuessed.length > 15) {
+        alert("You didn't guess the word. I guess you're not a weeb after all! The word was: " + wordChoice);
         resetGame();
     }
-}
 
-
-// var filler = [];
-// console.log(filler);
-
-// for (var i = 0; i < wordChoice.length; i++) {
-//     filler.push("-");
-// }
-
-// document.getElementById("currentword").innerHTML = filler;
-
-
-
-//     if (wordChoice.includes(userGuess)) {
-//         filler.splice(userGuess, 1, userGuess);
-//         console.log("itworks!");
-//         document.getElementById("currentword").innerHTML = filler;
-//     }
-//     else {
-//         console.log("you suck");
-//     }
-
-// }
+};
 
 // 1. computer picks a word(wordChoice from wordbank)
 // 2. computer finds how many letters are in the word, and displays '-' for each letter
