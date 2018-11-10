@@ -1,23 +1,20 @@
 "use strict";
 var wordBank = ["bulma", "fatbuu", "freeza", "futuretrunks", "gohan", "goku", "goten", "kidbuu", "kidgohan", "kidtrunks", "kingkai", "roshi", "pan", "perfectcell", "raditz", "supersaiyan", "tien", "vegeta", "videl", "yamcha"];
-
 var wordChoice;
-
 var lettersGuessed;
-
 var numberOfGuesses = 15;
-
 var userGuess;
 
 resetGame();
 
 function resetGame() {
     wordChoice = wordBank[Math.floor(Math.random() * wordBank.length)];
+    console.log(wordChoice);
     lettersGuessed = [];
     gameDisplay();
     numberOfGuesses = 15;
+    document.getElementById("numberOfGuesses").innerHTML = numberOfGuesses;
 };
-
 function gameDisplay() {
     var wordDisplay = "";
     var isInWord = true;
@@ -26,48 +23,36 @@ function gameDisplay() {
         var correctLetter = wordChoice[i];
         if (lettersGuessed.includes(correctLetter)) {
             wordDisplay = wordDisplay + correctLetter;
-            console.log(typeof wordDisplay);
             isInWord = false;
         }
         else {
             wordDisplay = wordDisplay + "-";
             isInWord = true;
         };
-        
-        
+        // something breaks when user guesses a letter that appears more than once in the word
     };
-
     if (isInWord) {
         numberOfGuesses--;
-        
-    };
 
+    };
     if (wordDisplay.includes("-") == false) {
         alert("You won! You know too much about anime, congrats!");
+        resetGame();
+    }
+    if (lettersGuessed.length > 15) {
+        alert("You didn't guess the word. I guess you're not a weeb after all! The word was: " + wordChoice);
         resetGame();
     }
 
     document.getElementById("currentword").innerHTML = wordDisplay;
     document.getElementById("lettersGuessed").innerHTML = lettersGuessed.join(" ");
     document.getElementById("numberOfGuesses").innerHTML = numberOfGuesses;
-
-    
 };
-
-
 document.onkeyup = function (userInput) {
 
     userGuess = userInput.key;
-    // GET THIS LINE EXPLAINED ^^^
     lettersGuessed.push(userGuess);
     gameDisplay();
-   
-
-    if (lettersGuessed.length > 15) {
-        alert("You didn't guess the word. I guess you're not a weeb after all! The word was: " + wordChoice);
-        resetGame();
-    }
-
 };
 
 // 1. computer picks a word(wordChoice from wordbank)
