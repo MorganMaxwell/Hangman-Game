@@ -29,13 +29,14 @@ function gameDisplay() {
             wordDisplay = wordDisplay + "-";
             isInWord = true;
         };
-        // something breaks when user guesses a letter that appears more than once in the word
+        // something breaks when user guesses a letter that appears more than once in the word. 
+        // or maybe it's something else, it is very inconsistent when this happens
     };
     if (isInWord) {
         numberOfGuesses--;
-
     };
     if (wordDisplay.includes("-") == false) {
+        document.getElementById("currentword").innerHTML = wordChoice;
         alert("You won! You know too much about anime, congrats!");
         resetGame();
     }
