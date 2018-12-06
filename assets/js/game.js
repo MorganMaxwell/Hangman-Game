@@ -14,6 +14,7 @@ function resetGame() {
     gameDisplay();
     numberOfGuesses = 15;
     document.getElementById("numberOfGuesses").innerHTML = numberOfGuesses;
+    document.getElementById("currentword").innerHTML = wordDisplay;
 };
 function gameDisplay() {
     var wordDisplay = "";
